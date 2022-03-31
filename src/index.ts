@@ -166,8 +166,20 @@ linechart.addSeries({...line, name: 'line 2',data: randomData(1) } , true);
 const stackchart = Highcharts.chart('stack-chart', { ...options, 
     tooltip: {
         split: true,
-
-    } 
+    },
+    plotOptions: {
+        area: {
+            stacking: 'percent',
+            marker: {
+                lineWidth:0
+            }
+        },
+        series: {
+            marker: {
+                enabled: false
+            }
+        }
+    }
 });
 const stack:Highcharts.SeriesAreaOptions = {
     type: 'area',

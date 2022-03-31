@@ -117,14 +117,65 @@ function randomData(factor:number = 1) {
 }
 
 
-const chart = Highcharts.chart('area-chart1', options);
+const areachart = Highcharts.chart('area-chart1', options);
+const area:Highcharts.SeriesAreaOptions = {
+    type: 'area',
+//    color: '#8C61FF',
+    lineWidth: 1,
+    allowPointSelect: false,
+    fillColor: {
+        linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+        },
+        stops:[
+            [0, 'rgba(140, 97, 255, 0.3)'],
+            [1, 'rgba(140, 97, 255, 0)']
+        ]
+    }
+//    xAxis: 'datetime',
+}
+areachart.addSeries({...area, name: 'area 1', data: randomData(1) } , true);
+
+const areachart2 = Highcharts.chart('area-chart2', options);
+const area2:Highcharts.SeriesAreaOptions = {
+    type: 'area',
+//    color: '#8C61FF',
+    lineWidth: 1,
+    allowPointSelect: false,
+//    xAxis: 'datetime',
+}
+areachart2.addSeries({...area2, name: 'area 21', data: randomData(1) } , true);
+areachart2.addSeries({...area2, name: 'area 22', data: randomData(1) } , true);
+areachart2.addSeries({...area2, name: 'area 23', data: randomData(1) } , true);
+
+
+const linechart = Highcharts.chart('line-chart', options);
 const line:Highcharts.SeriesLineOptions = {
-    name: 'Line 1',
     type: 'line',
 //    color: '#8C61FF',
     lineWidth: 1,
     allowPointSelect: false,
 //    xAxis: 'datetime',
 }
-chart.addSeries({...line, name: 'line 1', data: randomData(1) } , true);
-chart.addSeries({...line, name: 'line 2',data: randomData(1) } , true);
+linechart.addSeries({...line, name: 'line 1', data: randomData(1) } , true);
+linechart.addSeries({...line, name: 'line 2',data: randomData(1) } , true);
+
+const stackchart = Highcharts.chart('stack-chart', { ...options, 
+    tooltip: {
+        split: true,
+
+    } 
+});
+const stack:Highcharts.SeriesAreaOptions = {
+    type: 'area',
+//    color: '#8C61FF',
+    lineWidth: 1,
+    allowPointSelect: false,
+//    xAxis: 'datetime',
+}
+stackchart.addSeries({...area2, name: 'stack 1', data: randomData(1) } , true);
+stackchart.addSeries({...area2, name: 'stack 2', data: randomData(1) } , true);
+stackchart.addSeries({...area2, name: 'stack 3', data: randomData(1) } , true);
